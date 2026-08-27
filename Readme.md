@@ -395,3 +395,26 @@ what() inside the class = implicitly inline
 ```
 
 That is the **core knowledge of `ex00`**.
+
+
+# ex01
+
+There is a useful vector function:
+
+reserve(n)
+
+It allocates space for up to n elements without actually creating n elements.
+
+The difference is:
+
+vector<int>(5)
+
+→ 5 actual integers exist.
+
+Whereas:
+
+reserve(5)
+
+→ zero actual integers exist, but space is prepared for approximately 5.
+
+This is likely useful for your constructor.
