@@ -496,6 +496,47 @@ queue
 priority_queue
 ```
 
+What container is underneath?
+This is where the word adapter becomes clearer.
+
+stack
+By default:
+```text
+stack
+  ↓
+deque
+```
+
+queue
+By default:
+```text
+queue
+  ↓
+deque
+```
+
+priority_queue
+By default:
+```text
+priority_queue
+  ↓
+vector
+```
+
+You can even specify another underlying container in some cases.
+For example:
+```cpp
+std::stack<int, std::vector<int> > s;
+```
+
+Now:
+```text
+stack
+  ↓
+vector
+```
+The stack behavior stays the same.
+
 ---
 
 # 12. stack
