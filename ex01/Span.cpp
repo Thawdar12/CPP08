@@ -33,7 +33,7 @@ void Span::addNumber(int number)
 {
     if (numbers.size() == N)
         throw NoSpaceException();
-        numbers.push_back(number);
+    numbers.push_back(number);
 }
 
 int Span::shortestSpan() 
