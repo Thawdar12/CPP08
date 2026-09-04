@@ -1,7 +1,7 @@
 #include "Span.hpp"
-
-// unsigned int N;
-// std::vector<int> numbers;
+#include <iterator>
+#include <algorithm>
+#include <climits>
 
 Span::Span() : N(0) {}
 
@@ -31,29 +31,48 @@ Span::~Span() {}
 
 void Span::addNumber(int number) 
 {
-    if (numbers.size() == N)
+    if (numbers.size() >= N)
         throw NoSpaceException();
     numbers.push_back(number);
 }
 
 int Span::shortestSpan() 
 {
+    if(numbers.size() < 2)
+        throw cannotFindException();
 
+    std::vector<int> sorted(numbers);
+    std::sort(sorted.begin(), sorted.end());
+    int shortest = INT_MAX;
+    for(std::vector<int>::size_type i = 1; i < sorted.size(); i++)
+    {
+        int span = sorted[i] - sorted[i - 1];
+        if (span < shortest)
+            shortest = span;
+    }
+    return shortest;
 }
 
 int Span::longestSpan() 
 {
+    if(numbers.size() < 2)
+        throw cannotFindException();
+    
+    int smallest = *std::min_element(numbers.begin(), numbers.end());
+    int largest = *std::max_element(numbers.begin(), numbers.end());
 
+    return largest - smallest;
 }
 
 
 const char* Span::NoSpaceException::what() const throw()
 {
-    return "Already full. Cannot add more";
+    return "Error: Already full. Cannot add more";
 }
 
- 
+
 const char* Span::cannotFindException::what() const throw()
 {
-    return "No numbers stored or only one, no span can be found.";
+    return "Error: No numbers stored or only one; no span can be found.";
 }
+

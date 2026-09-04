@@ -24,13 +24,23 @@ class Span
         {
             public:
                 const char* what() const throw();
-        };
 
+        };
+     
         class cannotFindException : public std::exception
         {
             public:
                 const char* what() const throw();
         };
- 
+        
+        template <typename Iterator>
+        void addNumber(Iterator begin, Iterator end)
+        {
+            if (numbers.size()
+                + static_cast<unsigned int>(std::distance(begin, end)) > N)
+                throw NoSpaceException();
+
+            numbers.insert(numbers.end(), begin, end);
+        }
 };
 

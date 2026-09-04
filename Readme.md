@@ -1313,7 +1313,7 @@ After sorting:
 Shortest span:
 
 ```text
-6 - 3 = 3
+11 - 9 = 2
 ```
 
 Longest span:
